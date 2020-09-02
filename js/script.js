@@ -5,6 +5,8 @@ $(document).ready(function(){
     var input = $('#input').val();
     console.log(input);
 
+    $('.container').empty();
+
     //inizio ajax
     $.ajax(
       {
@@ -42,7 +44,7 @@ $(document).ready(function(){
 
             //inserimento object in html
             $('.container').append(html);
-
+            //clear search bar
             input = $('#input').val('');
 
           }
