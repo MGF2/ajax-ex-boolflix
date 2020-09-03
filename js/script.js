@@ -2,7 +2,7 @@ $(document).ready(function(){
 
   $('#search').click(function() {
 
-    var input = $('#input').val();
+    var input = $('#input').val().toLowerCase();
     console.log(input);
 
     $('.container').empty();
@@ -29,15 +29,15 @@ $(document).ready(function(){
             var source = $('#movie-template').html();
             var template = Handlebars.compile(source);
 
-            // var context = {
-            //   title: movies[i].title,
-            //   original_title: movies[i].original_title,
-            //   original_language: movies[i].original_language,
-            //   vote_average: movies[i].vote_average,
-            // }
+            var context = {
+              title: movies[i].title,
+              original_title: movies[i].original_title,
+              original_language: insertFlag(movies[i].original_language),
+              vote_average: insertStars(movies[i].vote_average),
+            }
 
             // save object content
-            var context = movies[i];
+            // var context = movies[i];
             var html = template(context);
 
             console.log(context);
@@ -60,3 +60,39 @@ $(document).ready(function(){
 
 
 });
+
+
+//FUNCTIONS
+
+
+//Funzione stars
+function insertStars(voto) {
+  var stars = Math.ceil(voto / 2);
+  var star = '';
+
+  for (var i = 0; i < 6; i++) {
+    if (i <= stars) {
+      star += '<i class="fas fa-star"></i>';
+    } else {
+      star += '<i class="far fa-star"></i>';
+    };
+  }
+
+ return star;
+
+};
+
+//Funzione flags
+function insertFlag(lingua) {
+
+  var flag = '';
+
+  if ( (lingua == 'it') || (lingua == 'en') ){
+    flag =  '<img src="img/' + lingua + '.png"/>';
+  } else {
+    flag = lingua;
+  }
+
+  return flag;
+
+}
