@@ -6,6 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
     <title>Boolflix</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
@@ -15,6 +16,7 @@
 
     <div class="container">
 
+
     </div>
 
     <script id="movie-template" type="text/x-handlebars-template">
@@ -22,8 +24,8 @@
       <ul list-item="{{movie}}">
         <li class="title">Titolo:{{title}}</li>
         <li class="original_title">Titolo orignale:{{original_title}}</li>
-        <li class="original_language">Lingua originale:{{original_language}}</li>
-        <li class="vote_average">Voto:{{vote_average}}</li>
+        <li class="original_language flag">Lingua originale: {{{original_language}}}</li>
+        <li class="vote_average"> Voto:  {{{vote_average}}}  </li>
       </ul>
 
     </script>

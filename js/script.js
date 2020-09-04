@@ -66,13 +66,17 @@ $(document).ready(function(){
 
 
 //Funzione stars
-function insertStars(voto) {
-  var stars = Math.ceil(voto / 2);
+function insertStars(num) {
+  var resto = num % 2;
+  var stars = Math.ceil(num / 2);
   var star = '';
 
-  for (var i = 0; i < 6; i++) {
+  for (var i = 0; i < 5; i++) {
     if (i <= stars) {
       star += '<i class="fas fa-star"></i>';
+    } else if (resto != 0) {
+      star += '<i class="fas fa-star-half-alt"></i>';
+      resto= 0;
     } else {
       star += '<i class="far fa-star"></i>';
     };
@@ -88,7 +92,7 @@ function insertFlag(lingua) {
   var flag = '';
 
   if ( (lingua == 'it') || (lingua == 'en') ){
-    flag =  '<img src="img/' + lingua + '.png"/>';
+    flag =  '<img src="img/' + lingua + '.svg"/>';
   } else {
     flag = lingua;
   }
