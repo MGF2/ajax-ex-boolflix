@@ -85,7 +85,7 @@ function addFilm(data,type) {
   }
 }
 
-//Funzione nessun risultato
+//Funzione nessun risultato ?
 
 
 //Funzione reset
@@ -135,25 +135,13 @@ function insertFlag(lingua) {
 }
 
 //Funzione poster
-// function poster(src) {
-//
-//   var poster = '';
-//
-//   poster = '<img src="https://image.tmdb.org/t/p/w185/' + src + ' "/>'
-//
-//   return poster;
-//
-//
-// }
-
 function poster(src) {
   console.log(src);
   var poster = '';
 
-
   if ( src == null ) {
 
-    poster = '<img src="img/null.png"/>';
+    poster = '<img src="img/null3.png"/>';
 
   } else {
 

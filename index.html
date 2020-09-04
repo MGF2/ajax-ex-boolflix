@@ -11,24 +11,37 @@
   </head>
   <body>
 
-    <input id="input" type="text" name="input" value="input" placeholder="Search movie">
-    <button id="search" type="button" name="button">Search</button>
+    <header>
+      <div class="box">
+        <h1>BOOLFLIX</h1>
+        <div class="search-bar">
+          <input id="input" type="text" name="input" value="input" placeholder="Search movie">
+          <button id="search" type="button" name="button">Search</button>
+        </div>
+      </div>
+    </header>
 
-    <div class="container">
+    <!-- <input id="input" type="text" name="input" value="input" placeholder="Search movie">
+    <button id="search" type="button" name="button">Search</button> -->
+
+    <div class="container clearfix">
 
 
     </div>
 
     <script id="entry-template" type="text/x-handlebars-template">
 
-      <ul list-item="{{movie}}">
-        <li class="poster">{{{poster_path}}}</li>
-        <li class="title">Titolo: {{title}} </li>
-        <li class="original_title">Titolo orignale:{{original_title}}</li>
-        <li class="tipo">{{tipo}}</li>
-        <li class="original_language flag">Lingua: {{{original_language}}}</li>
-        <li class="vote_average"> Voto:  {{{vote_average}}}  </li>
-      </ul>
+      <div class="item">
+        <ul list-item="{{movie}}" class="b">
+          <li class="poster">{{{poster_path}}}</li>
+          <li class="title">Titolo: {{title}} </li>
+          <li class="original_title">Titolo orignale:{{original_title}}</li>
+          <li class="tipo">{{tipo}}</li>
+          <li class="original_language flag">Lingua: {{{original_language}}}</li>
+          <li class="vote_average y"> <span class="b">Voto:</span>  {{{vote_average}}}  </li>
+        </ul>
+      </div>
+
 
     </script>
 
