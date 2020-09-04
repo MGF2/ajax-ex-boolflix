@@ -10,18 +10,18 @@ $(document).ready(function(){
 
   });
 
-  // $('#input').keyup(function(event) {
-  //
-  //   if ( (event.keyCode == 13) || (event.which == 13) ) {
-  //
-  //     var input = $('#input').val().toLowerCase();
-  //
-  //     reset();
-  //     cercaFilm(input, 'movie');
-  //     cercaFilm(input, 'tv');
-  //   }
-  //
-  // });
+  $('#input').keyup(function(event) {
+
+    if ( (event.keyCode == 13) || (event.which == 13) ) {
+
+      var input = $('#input').val().toLowerCase();
+
+      reset();
+      cercaFilm(input, 'movie');
+      cercaFilm(input, 'tv');
+    }
+
+  });
 
 
 });
