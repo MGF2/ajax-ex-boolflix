@@ -4,65 +4,96 @@ $(document).ready(function(){
 
     var input = $('#input').val().toLowerCase();
     console.log(input);
+    reset();
+    cercaFilm(input, 'movie');
+    cercaFilm(input, 'tv');
 
-    $('.container').empty();
-
-    //inizio ajax
-    $.ajax(
-      {
-        url: 'https://api.themoviedb.org/3/search/movie',
-        method: 'GET',
-        data: {
-          api_key: 'a37d25ddedf8f63da854e0a07d06f5f1',
-          query: input,
-          language: 'it-IT',
-        },
-        success: function(risposta){
-
-          var movies = risposta.results;
-
-          // loop to get objects
-          for ( var i = 0 ; i < movies.length; i++) {
-
-            console.log(movies);
-
-            var source = $('#movie-template').html();
-            var template = Handlebars.compile(source);
-
-            var context = {
-              title: movies[i].title,
-              original_title: movies[i].original_title,
-              original_language: insertFlag(movies[i].original_language),
-              vote_average: insertStars(movies[i].vote_average),
-            }
-
-            // save object content
-            // var context = movies[i];
-            var html = template(context);
-
-            console.log(context);
-
-            //inserimento object in html
-            $('.container').append(html);
-            //clear search bar
-            input = $('#input').val('');
-
-          }
-
-        },
-        'error':function(){
-          alert('errore!');
-        }
-      }
-    );
-     //fine ajax
   });
+
+  // $('#input').keyup(function(event) {
+  //
+  //   if ( (event.keyCode == 13) || (event.which == 13) ) {
+  //
+  //     var input = $('#input').val().toLowerCase();
+  //
+  //     reset();
+  //     cercaFilm(input, 'movie');
+  //     cercaFilm(input, 'tv');
+  //   }
+  //
+  // });
 
 
 });
 
 
 //FUNCTIONS
+
+//Funzione cerca film
+function cercaFilm(data, type) {
+  $.ajax(
+    {
+      url: 'https://api.themoviedb.org/3/search/' + type,
+      method: 'GET',
+      data:
+      {
+        api_key: 'a37d25ddedf8f63da854e0a07d06f5f1',
+        query: data,
+        language: 'it-IT',
+      },
+      success: function(risposta){
+
+          addFilm(risposta,type);
+
+      },
+      error:function(){
+        alert('errore!');
+      }
+    }
+  );
+}
+
+//Funzione aggiungi film
+function addFilm(data,type) {
+  var source = $("#entry-template").html();
+  var template = Handlebars.compile(source);
+
+  for (var i = 0; i < data.results.length; i++){
+
+   if (type == 'movie') {
+     var context = {
+       titolo: data.results[i].title,
+       original_title: data.results[i].original_title,
+       tipo: 'Film',
+       original_language: insertFlag(data.results[i].original_language),
+       vote_average: insertStars(data.results[i].vote_average)
+     }
+   } else {
+     var context = {
+       titolo: data.results[i].name,
+       original_title: data.results[i].original_name,
+       tipo: 'Serie TV',
+       original_language: insertFlag(data.results[i].original_language),
+       vote_average: insertStars(data.results[i].vote_average)
+     }
+
+  }
+    var html = template(context);
+    $('.container').append(html);
+  }
+}
+
+//Funzione nessun risultato
+
+
+//Funzione reset
+
+function reset() {
+
+  $('#input').val('');
+  $('.container').empty();
+
+}
 
 
 //Funzione stars
