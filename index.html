@@ -22,8 +22,10 @@
     <script id="entry-template" type="text/x-handlebars-template">
 
       <ul list-item="{{movie}}">
-        <li class="title">Titolo:{{title}}</li>
+        <li class="poster">{{{poster_path}}}</li>
+        <li class="title">Titolo: {{title}} </li>
         <li class="original_title">Titolo orignale:{{original_title}}</li>
+        <li class="tipo">{{tipo}}</li>
         <li class="original_language flag">Lingua: {{{original_language}}}</li>
         <li class="vote_average"> Voto:  {{{vote_average}}}  </li>
       </ul>

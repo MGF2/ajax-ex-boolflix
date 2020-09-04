@@ -62,19 +62,21 @@ function addFilm(data,type) {
 
    if (type == 'movie') {
      var context = {
-       titolo: data.results[i].title,
+       title: data.results[i].title,
        original_title: data.results[i].original_title,
        tipo: 'Film',
        original_language: insertFlag(data.results[i].original_language),
-       vote_average: insertStars(data.results[i].vote_average)
+       vote_average: insertStars(data.results[i].vote_average),
+       poster_path: poster(data.results[i].poster_path)
      }
    } else {
      var context = {
-       titolo: data.results[i].name,
+       title: data.results[i].name,
        original_title: data.results[i].original_name,
        tipo: 'Serie TV',
        original_language: insertFlag(data.results[i].original_language),
-       vote_average: insertStars(data.results[i].vote_average)
+       vote_average: insertStars(data.results[i].vote_average),
+       poster_path: poster(data.results[i].poster_path)
      }
 
   }
@@ -129,5 +131,36 @@ function insertFlag(lingua) {
   }
 
   return flag;
+
+}
+
+//Funzione poster
+// function poster(src) {
+//
+//   var poster = '';
+//
+//   poster = '<img src="https://image.tmdb.org/t/p/w185/' + src + ' "/>'
+//
+//   return poster;
+//
+//
+// }
+
+function poster(src) {
+  console.log(src);
+  var poster = '';
+
+
+  if ( src == null ) {
+
+    poster = '<img src="img/null.png"/>';
+
+  } else {
+
+    poster = '<img src="https://image.tmdb.org/t/p/w185/' + src + ' "/>';
+
+  }
+
+ return poster;
 
 }
