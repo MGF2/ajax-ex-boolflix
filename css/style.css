@@ -14,7 +14,6 @@
 
 header .box {
   height: 80px;
-  width: 100vw;
   background-color: gray;
   display: flex;
   justify-content: space-between;
@@ -31,13 +30,8 @@ header h1 {
 .container {
   background-color: black;
   min-height: calc(100vh - 80px);
-  /* overflow-x: scroll; */
   max-width: 100vw;
-  /* display: flex;
-  flex-wrap: wrap; */
   padding: 25px;
-  /* justify-content: space-around; */
-
 }
 
 .b {
@@ -54,10 +48,24 @@ header h1 {
   float: left;
   width: 200px;
   margin-bottom: 10px;
+  position: relative;
+  overflow:hidden;
 }
 
-.poster:hover {
-  opacity: 0.1;
+.item:hover .overlay {
+  display: block;
+}
+
+.overlay {
+  display: none;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 278px;
+  width: 185px;
+  background-color: rgba(5, 5, 5, 0.9);
+  overflow-y: scroll;
 }
 
 .flag {
