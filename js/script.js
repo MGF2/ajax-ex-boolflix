@@ -89,6 +89,12 @@ function addFilm(data,type) {
   }
     var html = template(context);
     $('.container').append(html);
+
+    // if (type == 'movie'){
+    //   $('.film').append(html);
+    // } else {
+    //   $('.tv').append(html);
+    // }
   }
 }
 

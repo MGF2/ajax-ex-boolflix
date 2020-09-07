@@ -32,6 +32,9 @@ header h1 {
   min-height: calc(100vh - 80px);
   max-width: 100vw;
   padding: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .b {
@@ -47,9 +50,11 @@ header h1 {
 .item {
   float: left;
   width: 200px;
+  height: 280px;
   margin-bottom: 10px;
   position: relative;
   overflow:hidden;
+  object-fit: cover;
 }
 
 .item:hover .overlay {
@@ -62,6 +67,7 @@ header h1 {
   position: absolute;
   top: 0;
   left: 0;
+  bottom: 0;
   height: 278px;
   width: 185px;
   background-color: rgba(5, 5, 5, 0.9);
