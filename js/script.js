@@ -43,7 +43,12 @@ function cercaFilm(data, type) {
       },
       success: function(risposta){
 
+        if (risposta.total_results > 0) {
           addFilm(risposta,type);
+        } else {
+          noResult(type);
+        }
+
 
       },
       error:function(){
@@ -67,7 +72,8 @@ function addFilm(data,type) {
        tipo: 'Film',
        original_language: insertFlag(data.results[i].original_language),
        vote_average: insertStars(data.results[i].vote_average),
-       poster_path: poster(data.results[i].poster_path)
+       poster_path: poster(data.results[i].poster_path),
+       overview: insertOverview(data.results[i].overview.substring(0,250))
      }
    } else {
      var context = {
@@ -76,7 +82,8 @@ function addFilm(data,type) {
        tipo: 'Serie TV',
        original_language: insertFlag(data.results[i].original_language),
        vote_average: insertStars(data.results[i].vote_average),
-       poster_path: poster(data.results[i].poster_path)
+       poster_path: poster(data.results[i].poster_path),
+       overview: insertOverview(data.results[i].overview.substring(0,250))
      }
 
   }
@@ -85,11 +92,20 @@ function addFilm(data,type) {
   }
 }
 
-//Funzione nessun risultato ?
+//Funzione nessun risultato
+function noResult(type){
+  var source = $("#no-result-template").html();
+  var template = Handlebars.compile(source);
+  var context = {
+    noResult: 'Non ci sono risultati in: ' + type
+  };
+  var html = template(context);
+  $('.container').append(html);
+
+}
 
 
 //Funzione reset
-
 function reset() {
 
   $('#input').val('');
@@ -151,4 +167,18 @@ function poster(src) {
 
  return poster;
 
+}
+
+//Funzione overview
+function insertOverview(text) {
+
+  var over = "";
+
+  if (text == "") {
+    over = 'Nessuna descrizione.';
+  } else {
+    over = text + ' [...]';
+  }
+
+  return over;
 }
